@@ -7,6 +7,7 @@ class TCalendario{
         char* mensaje;
     public:
         TCalendario();
+        TCalendario(int dia, int mes, int anyo, char* mens);
 
 
 
