@@ -1,5 +1,7 @@
 #ifndef CUADERNILLO_1_TCALENDARIO_H
 #define CUADERNILLO_1_TCALENDARIO_H
+#include <iostream>
+#include <string.h>
 
 class TCalendario{
     private:
