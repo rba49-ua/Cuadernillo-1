@@ -13,9 +13,11 @@ class TCalendario {
 private:
     int dia, mes, anyo;
     char *mensaje;
-    bool comprobarFecha (int, int, int);
+    bool ComprobarFecha (int, int, int); //hecha
+    bool Bisiesto(int); //hecha
+    void Copia(const TCalendario &); //hecha
 public:
-    TCalendario();
+    TCalendario(); //hecha
 
     TCalendario(int dia, int mes, int anyo, char *mens);
 
