@@ -6,15 +6,39 @@ int main(){
     char fi[] = "Fecha incorrecta";
     char fc[] = "Fecha correcta";
 
-    TCalendario cal1(12,12,2006, fc);
-    TCalendario cal2(05,01,1900, fc);
-    TCalendario cal4;
+    TCalendario c1(14,12,1966, fc);
+    TCalendario c2(19,11,1994, fc);
+    TCalendario c3(01,01,1900, fc);
+    TCalendario c4(14,12,1966, fc);
 
-    cout<<cal1<<endl;
-    cout<<cal2<<endl;
-    cout<<cal1+79<<endl;
-    cal4=cal2-10;
-    cout<<cal2-10<<endl;
-    cout<<cal2<<endl;
-    cout<<cal4<<endl;
+    if (c1==c4)
+        cout<<"operador == funciona"<<endl;
+    else
+        cout<<"operador == no funciona"<<endl;
+
+    if (c2==c3)
+        cout<<"operador == no funciona"<<endl;
+    else
+        cout<<"operador == funciona"<<endl;
+
+
+    if (c1>c2)
+        cout<<"operador > no funciona"<<endl;
+    else
+        cout<<"operador > funciona"<<endl;
+
+    if (c3<c4)
+        cout<<"operador < funciona"<<endl;
+    else
+        cout<<"operador < no funciona"<<endl;
+
+    if (c1<c4)
+        cout<<"operador < no funciona"<<endl;
+    else
+        cout<<"operador < funciona"<<endl;
+
+    if (c1>c4)
+        cout<<"operador > no funciona"<<endl;
+    else
+        cout<<"operador > funciona"<< endl;
 }
