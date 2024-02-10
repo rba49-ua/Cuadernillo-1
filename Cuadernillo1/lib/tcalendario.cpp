@@ -52,13 +52,10 @@ int TCalendario::diasEnMes(int mes, int anyo){
 
 TCalendario TCalendario::ajustarFecha(TCalendario &c) {
     while(c.dia> diasEnMes(c.mes, c.anyo)){
-        c.dia--;
-        if(c.dia == 0){
-            c.mes--;
-            if(c.mes == 0){
-                c.anyo--;
-                c.mes=12;
-            }
+        c.dia= c.dia - diasEnMes(c.mes, c.anyo);
+        if (++c.mes > 12) {
+            c.mes = 1;
+            c.anyo++;
         }
     }
     return c;
@@ -157,30 +154,21 @@ TCalendario TCalendario::operator-(int cantDias) {
 
 TCalendario TCalendario::operator++(int cantDias) {
     TCalendario temp(*this);
-    temp.dia++;
-    temp.mes++;
-    temp.anyo++;
     ajustarFecha(temp);
+    dia++;
     return temp;
-
-
 }
 
 TCalendario &TCalendario::operator++() {
-    TCalendario temp(*this);
-    temp.dia++;
-    temp.mes++;
-    temp.anyo++;
-    ajustarFecha(temp);
+    dia++;
+    ajustarFecha(*this);
     return *this;
 }
 
 TCalendario TCalendario::operator--(int cantDias) {
     TCalendario temp(*this);
-    temp.dia--;
-    temp.mes--;
-    temp.anyo--;
     ajustarFecha(temp);
+    dia--;
 
     if(!comprobarFecha(temp.dia, temp.mes, temp.anyo)){
         temp.~TCalendario();
@@ -189,14 +177,11 @@ TCalendario TCalendario::operator--(int cantDias) {
 }
 
 TCalendario &TCalendario::operator--() {
-    TCalendario temp(*this);
-    temp.dia--;
-    temp.mes--;
-    temp.anyo--;
-    ajustarFecha(temp);
+    dia--;
+    ajustarFecha(*this);
 
-    if(!comprobarFecha(temp.dia, temp.mes, temp.anyo)){
-        temp.~TCalendario();
+    if(!comprobarFecha(dia, mes, anyo)){
+        (*this).~TCalendario();
     }
     return *this;
 }
@@ -237,14 +222,9 @@ bool TCalendario::operator==(const TCalendario &c) {
             if(strcmp(mensaje, c.mensaje) == 0){
                 return true;
             }
-            else{
-                return false;
-            }
         }
     }
-    else{
-        return false;
-    }
+    return false;
 }
 
 bool TCalendario::operator!=(const TCalendario &c) {
@@ -281,6 +261,10 @@ bool TCalendario::operator>(const TCalendario &c) {
 }
 
 bool TCalendario::operator<(const TCalendario &c) {
+    //Compare the value
+    if(*this == c){
+        return false;
+    }
     return !(*this > c);
 }
 

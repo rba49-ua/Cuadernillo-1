@@ -10,56 +10,56 @@ class TCalendario {
 private:
     int dia, mes, anyo;
     char *mensaje;
-    bool comprobarFecha (int, int, int); //hecha
-    bool bisiesto(int); //hecha
+    bool comprobarFecha (int, int, int);
+    bool bisiesto(int);
     int diasEnMes(int, int);
     TCalendario ajustarFecha(TCalendario &c);
     void defaultParameters();
-    void copia(const TCalendario &); //hecha
+    void copia(const TCalendario &);
 public:
-    TCalendario(); //hecha
+    TCalendario();
 
-    TCalendario(int dia, int mes, int anyo, char *mens); //hecho
+    TCalendario(int dia, int mes, int anyo, char *mens);
 
-    TCalendario(TCalendario &); //hecho
+    TCalendario(TCalendario &);
 
     ~TCalendario();
 
-    TCalendario &operator=(const TCalendario &); //puede
+    TCalendario &operator=(const TCalendario &);
 
-    TCalendario operator+(int); //hecho
+    TCalendario operator+(int);
 
-    TCalendario operator-(int); //hecho
+    TCalendario operator-(int);
 
-    TCalendario operator++(int); //puede
+    TCalendario operator++(int);
 
-    TCalendario &operator++(); //puede
+    TCalendario &operator++();
 
-    TCalendario operator--(int); //puede
+    TCalendario operator--(int);
 
-    TCalendario &operator--(); //puede
+    TCalendario &operator--();
 
-    bool ModFecha(int, int, int); //hecha
+    bool ModFecha(int, int, int);
 
-    bool ModMensaje(char *); //hecha
+    bool ModMensaje(char *);
 
-    bool operator==(const TCalendario &); //hecho
+    bool operator==(const TCalendario &);
 
-    bool operator!=(const TCalendario &); //hecho
+    bool operator!=(const TCalendario &);
 
-    bool operator>(const TCalendario &); //hecho
+    bool operator>(const TCalendario &);
 
-    bool operator<(const TCalendario &); //hecho
+    bool operator<(const TCalendario &);
 
-    bool EsVacio(); //hecho
+    bool EsVacio();
 
-    int Dia(); //hecho
+    int Dia();
 
-    int Mes(); //hecho
+    int Mes();
 
-    int Anyo(); //hecho
+    int Anyo();
 
-    char *Mensaje(); //hecho
+    char *Mensaje();
 
     friend ostream &operator<<(ostream &, const TCalendario &);
 };
