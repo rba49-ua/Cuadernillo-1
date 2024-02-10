@@ -1,8 +1,4 @@
-//
-// Created by Raúl on 07/02/2024.
-//
 
-#define CUADERNILLO1_TCALENDARIO_H
 
 #ifndef CUADERNILLO_1_TCALENDARIO_H
 #define CUADERNILLO_1_TCALENDARIO_H
@@ -13,9 +9,10 @@ class TCalendario {
 private:
     int dia, mes, anyo;
     char *mensaje;
-    bool ComprobarFecha (int, int, int); //hecha
-    bool Bisiesto(int); //hecha
-    void Copia(const TCalendario &); //hecha
+    bool comprobarFecha (int, int, int); //hecha
+    bool bisiesto(int); //hecha
+    void defaultParameters();
+    void copia(const TCalendario &); //hecha
 public:
     TCalendario(); //hecha
 
@@ -25,11 +22,11 @@ public:
 
     ~TCalendario();
 
-    TCalendario &operator=(TCalendario &);
+    TCalendario &operator=(const TCalendario &);
 
-    TCalendario operator+(int);
+    TCalendario operator+(int); //hecho
 
-    TCalendario operator-(int);
+    TCalendario operator-(int); //hecho
 
     TCalendario operator++(int);
 
@@ -43,25 +40,25 @@ public:
 
     bool ModMensaje(char *);
 
-    bool operator==(TCalendario &);
+    bool operator==(const TCalendario &);
 
-    bool operator!=(TCalendario &);
+    bool operator!=(const TCalendario &);
 
-    bool operator>(TCalendario &);
+    bool operator>(const TCalendario &);
 
-    bool operator<(TCalendario &);
+    bool operator<(const TCalendario &);
 
-    bool EsVacio();
+    bool EsVacio(); //hecho
 
-    int Dia();
+    int Dia(); //hecho
 
-    int Mes();
+    int Mes(); //hecho
 
-    int Anyo();
+    int Anyo(); //hecho
 
-    char *Mensaje();
+    char *Mensaje(); //hecho
 
-    friend std::ostream &operator<<(std::ostream &, TCalendario &);
+    friend std::ostream &operator<<(std::ostream &, const TCalendario &);
 };
 
 
