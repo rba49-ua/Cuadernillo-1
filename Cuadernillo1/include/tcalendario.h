@@ -4,6 +4,7 @@
 #define CUADERNILLO_1_TCALENDARIO_H
 #include <iostream>
 #include <string.h>
+using namespace std;
 
 class TCalendario {
 private:
@@ -11,42 +12,44 @@ private:
     char *mensaje;
     bool comprobarFecha (int, int, int); //hecha
     bool bisiesto(int); //hecha
+    int diasEnMes(int, int);
+    TCalendario ajustarFecha(TCalendario &c);
     void defaultParameters();
     void copia(const TCalendario &); //hecha
 public:
     TCalendario(); //hecha
 
-    TCalendario(int dia, int mes, int anyo, char *mens);
+    TCalendario(int dia, int mes, int anyo, char *mens); //hecho
 
-    TCalendario(TCalendario &);
+    TCalendario(TCalendario &); //hecho
 
     ~TCalendario();
 
-    TCalendario &operator=(const TCalendario &);
+    TCalendario &operator=(const TCalendario &); //puede
 
     TCalendario operator+(int); //hecho
 
     TCalendario operator-(int); //hecho
 
-    TCalendario operator++(int);
+    TCalendario operator++(int); //puede
 
-    TCalendario &operator++();
+    TCalendario &operator++(); //puede
 
-    TCalendario operator--(int);
+    TCalendario operator--(int); //puede
 
-    TCalendario &operator--();
+    TCalendario &operator--(); //puede
 
-    bool ModFecha(int, int, int);
+    bool ModFecha(int, int, int); //hecha
 
-    bool ModMensaje(char *);
+    bool ModMensaje(char *); //hecha
 
-    bool operator==(const TCalendario &);
+    bool operator==(const TCalendario &); //hecho
 
-    bool operator!=(const TCalendario &);
+    bool operator!=(const TCalendario &); //hecho
 
-    bool operator>(const TCalendario &);
+    bool operator>(const TCalendario &); //hecho
 
-    bool operator<(const TCalendario &);
+    bool operator<(const TCalendario &); //hecho
 
     bool EsVacio(); //hecho
 
@@ -58,7 +61,7 @@ public:
 
     char *Mensaje(); //hecho
 
-    friend std::ostream &operator<<(std::ostream &, const TCalendario &);
+    friend ostream &operator<<(ostream &, const TCalendario &);
 };
 
 
