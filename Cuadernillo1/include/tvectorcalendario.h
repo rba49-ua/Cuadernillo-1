@@ -11,7 +11,7 @@ class TVectorCalendario{
         TCalendario error;
 
         void defaultParameters();
-        void copia();
+        void copia(const TVectorCalendario &);
 
     public:
         TVectorCalendario();

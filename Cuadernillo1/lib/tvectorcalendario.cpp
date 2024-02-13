@@ -1,8 +1,15 @@
 #include "../include/tvectorcalendario.h"
 using namespace std;
 
+
+void TVectorCalendario::defaultParameters() {
+    this-> c = NULL;
+    this-> tamano = 0;
+}
+
+
 void TVectorCalendario::copia(const TVectorCalendario &vc){
-    this->tamano=c.tamano;
+    this->tamano=vc.tamano;
     if(tamano ==0)
     {
         c = NULL;
@@ -15,10 +22,6 @@ void TVectorCalendario::copia(const TVectorCalendario &vc){
     }
 }
 
-void TVectorCalendario::defaultParameters() {
-    this-> c = NULL;
-    this-> tamano = 0;
-}
 
 TVectorCalendario::TVectorCalendario() {
     defaultParameters();
@@ -46,7 +49,7 @@ TVectorCalendario::~TVectorCalendario(){
     }
 }
 
-TVectorCalendario &TVectorCalendario::operator=(const TVectorCalendario &) vc {
+TVectorCalendario &TVectorCalendario::operator=(const TVectorCalendario &vc) {
 
 }
 
@@ -54,13 +57,19 @@ bool TVectorCalendario::operator==(const TVectorCalendario & vc){
     if(this->tamano != vc.tamano){
         return false;
     }
-
-
 }
 
 
 bool TVectorCalendario::operator!=(const TVectorCalendario & vc) {
     return !(*this == vc);
+}
+
+TCalendario &TVectorCalendario::operator[] (int a){
+
+}
+
+TCalendario TVectorCalendario::operator[] (int a) const{
+
 }
 
 
