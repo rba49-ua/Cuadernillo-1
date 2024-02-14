@@ -104,7 +104,7 @@ TCalendario::TCalendario(int dia, int mes, int anyo, char *mens) {
     }
 }
 
-TCalendario::TCalendario(TCalendario & c) {
+TCalendario::TCalendario(const TCalendario & c) {
     copia(c);
 }
 

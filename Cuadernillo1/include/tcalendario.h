@@ -21,7 +21,7 @@ public:
 
     TCalendario(int dia, int mes, int anyo, char *mens);
 
-    TCalendario(TCalendario &);
+    TCalendario(const TCalendario &);
 
     ~TCalendario();
 
