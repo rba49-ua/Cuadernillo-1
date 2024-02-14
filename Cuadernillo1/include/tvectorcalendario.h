@@ -4,7 +4,7 @@
 #include "tcalendario.h"
 
 class TVectorCalendario{
-    friend ostream & operator<<(ostream &, const TVectorCalendario &);
+    friend ostream & operator<<(ostream &, const TVectorCalendario &);  //falta
     private:
         TCalendario *c;
         int tamano;
@@ -24,9 +24,9 @@ class TVectorCalendario{
 
         TVectorCalendario & operator=(const TVectorCalendario &);
 
-        bool operator==(const TVectorCalendario &);
+        bool operator==(TVectorCalendario &);
 
-        bool operator!=(const TVectorCalendario &);
+        bool operator!=(TVectorCalendario &);
 
         TCalendario & operator[] (int);
 
@@ -36,11 +36,11 @@ class TVectorCalendario{
 
         int Ocupadas();
 
-        bool ExisteCal (const TCalendario &);
+        bool ExisteCal (TCalendario &);
 
-        void MostrarMensajes (int, int, int);
+        void MostrarMensajes (int, int, int);   //falta
 
-        bool Redimensionar (int);
+        bool Redimensionar (int);   //falta
 
 };
 

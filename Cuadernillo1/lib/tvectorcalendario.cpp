@@ -50,29 +50,74 @@ TVectorCalendario::~TVectorCalendario(){
 }
 
 TVectorCalendario &TVectorCalendario::operator=(const TVectorCalendario &vc) {
+    if(this == &vc){
+        return *this;
+    }
+    else{
+        (*this).~TVectorCalendario();
+        this->tamano = vc.tamano;
+        this -> c = new TCalendario[this->tamano];
 
-}
-
-bool TVectorCalendario::operator==(const TVectorCalendario & vc){
-    if(this->tamano != vc.tamano){
-        return false;
+        for (int i = 1; i<= this-> tamano; i++){
+            c[i]=vc.c[i];
+        }
+        return (*this);
     }
 }
 
+bool TVectorCalendario::operator==(TVectorCalendario & vc){
+    if(this->tamano != vc.tamano){
+        return false;
+    }
 
-bool TVectorCalendario::operator!=(const TVectorCalendario & vc) {
+    for(int i=0; i < this-> tamano; i++){
+        if(this-> c[i] != vc.c[i]){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+bool TVectorCalendario::operator!=(TVectorCalendario & vc) {
     return !(*this == vc);
 }
 
-TCalendario &TVectorCalendario::operator[] (int a){
-
+TCalendario &TVectorCalendario::operator[] (int num){
+    if(num > 0 && num <= tamano){
+        return c[num-1]; //Ya que las posiciones de num empiezan en 1
+    }
+    return error;
 }
 
-TCalendario TVectorCalendario::operator[] (int a) const{
-
+TCalendario TVectorCalendario::operator[] (int num) const{
+    if(num > 0 && num <= tamano){
+        return c[num-1]; //Ya que las posiciones de num empiezan en 1
+    }
+    return error;
 }
 
 
 int TVectorCalendario::Tamano(){
     return tamano;
+}
+
+int TVectorCalendario::Ocupadas() {
+
+    int ocupadas = 0;
+    for(int i=0;i < tamano; i++){
+        if(c[i] != error){
+            ocupadas ++;
+        }
+    }
+    return ocupadas;
+}
+
+bool TVectorCalendario::ExisteCal(TCalendario &c) {
+    for(int i=0; i < this->tamano; i++){
+        if(c == this->c[i]){
+            return true;
+        }
+    }
+    return false;
 }
