@@ -123,9 +123,8 @@ bool TVectorCalendario::ExisteCal(TCalendario &c) {
 }
 
 void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
-    stringstream s;
-    s << "[";
-    if(comprobarFecha(dia, mes, anyo)){
+    cout << "[";
+    if(c->comprobarFecha(dia, mes, anyo)){
         for (int i = 0; i< tamano; i++){
 
             if  (anyo > c[i].Anyo()){
@@ -140,14 +139,14 @@ void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
                 continue;
             }
 
-            s << c[i];
+            cout << c[i];
 
             if ( i < tamano - 1 ){
-                s << ", ";
+                cout << ", ";
             }
         }
     }
-    s << "]";
+    cout << "]";
 }
 
 bool TVectorCalendario::Redimensionar(int) {
