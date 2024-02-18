@@ -9,13 +9,23 @@ using namespace std;
 class TCalendario {
 private:
     int dia, mes, anyo;
+
     char *mensaje;
+
     bool comprobarFecha (int, int, int);
+
     bool bisiesto(int);
+
     int diasEnMes(int, int);
+
     TCalendario ajustarFecha(TCalendario &c);
+
     void defaultParameters();
+
     void copia(const TCalendario &);
+
+    friend class TVectorCalendario;
+
 public:
     TCalendario();
 
