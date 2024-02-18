@@ -121,3 +121,40 @@ bool TVectorCalendario::ExisteCal(TCalendario &c) {
     }
     return false;
 }
+
+void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
+    stringstream s;
+    s << "[";
+    if(comprobarFecha(dia, mes, anyo)){
+        for (int i = 0; i< tamano; i++){
+
+            if  (anyo > c[i].Anyo()){
+                continue;
+            }
+
+            if  (anyo == c[i].Anyo() && mes > c[i].Mes()){
+                continue;
+            }
+
+            if (anyo == c[i].Anyo() && mes == c[i].Mes() && dia > c[i].Dia()){
+                continue;
+            }
+
+            s << c[i];
+
+            if ( i < tamano - 1 ){
+                s << ", ";
+            }
+        }
+    }
+    s << "]";
+}
+
+bool TVectorCalendario::Redimensionar(int) {
+
+}
+
+
+ostream & operator<<(ostream &, const TVectorCalendario &){
+
+}
