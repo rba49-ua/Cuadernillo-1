@@ -16,8 +16,8 @@ void TVectorCalendario::copia(const TVectorCalendario &vc){
     }
     else{
         c= new TCalendario[tamano];
-        for (int i=1;i<=tamano;i++){
-            c[i]=vc[i];
+        for (int i = 1;i <= tamano;i++){
+            c[i]=vc.c[i];
         }
     }
 }
@@ -54,12 +54,12 @@ TVectorCalendario &TVectorCalendario::operator=(const TVectorCalendario &vc) {
         return *this;
     }
     else{
-        (*this).~TVectorCalendario();
+        delete[] c;
         this->tamano = vc.tamano;
         this -> c = new TCalendario[this->tamano];
 
-        for (int i = 1; i<= this-> tamano; i++){
-            c[i]=vc.c[i];
+        for (int i = 1; i <= this-> tamano; i++){
+            this->c[i-1]=vc[i];
         }
         return (*this);
     }
@@ -114,7 +114,7 @@ int TVectorCalendario::Tamano(){
 int TVectorCalendario::Ocupadas() {
 
     int ocupadas = 0;
-    for(int i=0;i < tamano; i++){
+    for(int i=0 ;i < tamano; i++){
         if(c[i] != error){
             ocupadas ++;
         }
@@ -133,8 +133,8 @@ bool TVectorCalendario::ExisteCal(TCalendario &c) {
 
 void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
     cout << "[";
-    if(c->comprobarFecha(dia, mes, anyo)){
-        for (int i = 0; i< tamano; i++){
+    if(error.comprobarFecha(dia, mes, anyo)){
+        for (int i = 0; i < tamano; i++){
 
             if  (anyo > c[i].Anyo()){
                 continue;
@@ -150,7 +150,7 @@ void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
 
             cout << c[i];
 
-            if ( i < tamano - 1 ){
+            if ( i < tamano){
                 cout << ", ";
             }
         }
@@ -173,9 +173,11 @@ bool TVectorCalendario::Redimensionar(int tam) {
             aux[i] = c[i];
         }
 
-        for (int i = tamano; i < tam; i++){
+        for (int i = tamano + 1; i <= tam; i++){
             aux[i]= TCalendario();
         }
+
+        delete[] c;
     }
 
     if (tam < tamano){
@@ -194,14 +196,14 @@ bool TVectorCalendario::Redimensionar(int tam) {
 
 ostream & operator<<(ostream &s, const TVectorCalendario &vc){
     s << "[";
-    for(int i = 0; i<vc.tamano;  i++){
-        s << "(" << i + 1 << ") " << vc[i];
+    for(int i = 0; i < vc.tamano;  i++){
+        s << "(" << i + 1 << ") " << vc[i+1];
 
         if ( i < vc.tamano - 1 ){
-            cout << ", ";
+            s << ", ";
         }
     }
 
-    s <<"[";
+    s <<"]";
     return s;
 }

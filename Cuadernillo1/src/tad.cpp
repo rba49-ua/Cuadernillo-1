@@ -1,44 +1,29 @@
 #include <iostream>
 using namespace std;
-#include "../include/tcalendario.h"
+#include "../include/tvectorcalendario.h"
 
-int main(){
-    char fi[] = "Fecha incorrecta";
-    char fc[] = "Fecha correcta";
+int
+main(void)
+{
+    TVectorCalendario a(3), b(3);
+    TCalendario ca1(1,1,2006, (char*) "uno"), ca2(1,2,2006, (char*) "dos"), ca3(1,3,2006, (char*) "tres");
 
-    TCalendario c1(14,12,1966, fc);
-    TCalendario c2(19,11,1994, fc);
-    TCalendario c3(01,01,1900, fc);
-    TCalendario c4(14,12,1966, fc);
+    b[1] = ca1;
+    b[2] = ca2;
+    b[3] = ca3;
 
-    if (c1==c4)
-        cout<<"operador == funciona"<<endl;
-    else
-        cout<<"operador == no funciona"<<endl;
+    cout << "a=" << a << endl;
+    cout << "b=" << b << endl;
 
-    if (c2==c3)
-        cout<<"operador == no funciona"<<endl;
-    else
-        cout<<"operador == funciona"<<endl;
+    a = b;
 
+    cout << "a=" << a << endl;
+    cout << "b=" << b << endl;
 
-    if (c1>c2)
-        cout<<"operador > no funciona"<<endl;
-    else
-        cout<<"operador > funciona"<<endl;
+    b.Redimensionar(5);
 
-    if (c3<c4)
-        cout<<"operador < funciona"<<endl;
-    else
-        cout<<"operador < no funciona"<<endl;
+    cout << "a=" << a << endl;
+    cout << "b=" << b << endl;
 
-    if (c1<c4)
-        cout<<"operador < no funciona"<<endl;
-    else
-        cout<<"operador < funciona"<<endl;
-
-    if (c1>c4)
-        cout<<"operador > no funciona"<<endl;
-    else
-        cout<<"operador > funciona"<< endl;
+    return 0;
 }
