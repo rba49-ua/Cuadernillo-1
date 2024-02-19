@@ -70,11 +70,20 @@ bool TVectorCalendario::operator==(TVectorCalendario & vc){
         return false;
     }
 
+    if(this->c==NULL && vc.c==NULL){
+        return true;
+    }
+
+    if(this->c==NULL || vc.c==NULL){
+        return false;
+    }
+
     for(int i=0; i < this-> tamano; i++){
         if(this-> c[i] != vc.c[i]){
             return false;
         }
     }
+
     return true;
 }
 
@@ -124,7 +133,7 @@ bool TVectorCalendario::ExisteCal(TCalendario &c) {
 
 void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
     cout << "[";
-    if(c->comprobarFecha(dia, mes, anyo)){
+    if(TCalendario::comprobarFecha(dia, mes, anyo)){
         for (int i = 0; i< tamano; i++){
 
             if  (anyo > c[i].Anyo()){

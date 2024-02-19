@@ -38,7 +38,7 @@ class TVectorCalendario{
 
         bool ExisteCal (TCalendario &);
 
-        void MostrarMensajes (int, int, int);   //falta
+        void MostrarMensajes (int, int, int);
 
         bool Redimensionar (int);   //falta
 
