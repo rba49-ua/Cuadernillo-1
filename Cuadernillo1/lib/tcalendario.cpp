@@ -65,7 +65,7 @@ void TCalendario::defaultParameters(){
     this->dia = 1;
     this->mes = 1;
     this->anyo = 1900;
-    mensaje = NULL;
+    this-> mensaje = NULL;
 }
 
 
