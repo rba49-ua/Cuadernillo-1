@@ -133,7 +133,7 @@ bool TVectorCalendario::ExisteCal(TCalendario &c) {
 
 void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
     cout << "[";
-    if(error.comprobarFecha(dia, mes, anyo)){
+    if(TCalendario::comprobarFecha(dia, mes, anyo)){
         for (int i = 0; i < tamano; i++){
 
             if  (anyo > c[i].Anyo()){

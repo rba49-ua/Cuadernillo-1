@@ -12,7 +12,7 @@ private:
 
     char *mensaje;
 
-    bool comprobarFecha (int, int, int);
+    static bool comprobarFecha (int, int, int);
 
     bool bisiesto(int);
 
