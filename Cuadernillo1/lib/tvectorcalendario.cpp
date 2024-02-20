@@ -54,7 +54,7 @@ TVectorCalendario &TVectorCalendario::operator=(const TVectorCalendario &vc) {
         return *this;
     }
     else{
-        delete[] c;
+        (*this).~TVectorCalendario();
         this->tamano = vc.tamano;
         this -> c = new TCalendario[this->tamano];
 
