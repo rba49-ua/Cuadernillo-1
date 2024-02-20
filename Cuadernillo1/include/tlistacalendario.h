@@ -8,6 +8,7 @@ class TNodoCalendario{
     private:
         TCalendario c;
         TNodoCalendario *siguiente;
+        void Copia (const TNodoCalendario &);
 
     public:
         TNodoCalendario();
