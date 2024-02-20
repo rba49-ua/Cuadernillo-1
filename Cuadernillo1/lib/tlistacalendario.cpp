@@ -4,13 +4,12 @@ using namespace std;
 
 void TNodoCalendario::Copia(const TNodoCalendario &n) {
     this->c = n.c;
-    this.siguiente = n.siguiente;
+    this->siguiente = n.siguiente;
 }
 
 // También se puede poner:
 // TNodoCalendario::TNodoCalendario(): c(), siguiente(NULL){}
-TNodoCalendario::TNodoCalendario() {
-    c.TCalendario();
+TNodoCalendario::TNodoCalendario(): c(){
     siguiente=NULL;
 }
 

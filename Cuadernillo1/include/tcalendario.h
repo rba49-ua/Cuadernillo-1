@@ -14,7 +14,7 @@ private:
 
     static bool comprobarFecha (int, int, int);
 
-    bool bisiesto(int);
+    static bool bisiesto(int);
 
     int diasEnMes(int, int);
 
