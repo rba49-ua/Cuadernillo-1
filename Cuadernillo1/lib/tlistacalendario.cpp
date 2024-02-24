@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void TNodoCalendario::Copia(const TNodoCalendario &n) {
+void TNodoCalendario::CopiaNodo(const TNodoCalendario &n) {
     this->c = n.c;
     this->siguiente = n.siguiente;
 }
@@ -14,7 +14,7 @@ TNodoCalendario::TNodoCalendario(): c(){
 }
 
 TNodoCalendario::TNodoCalendario(const TNodoCalendario &n) {
-    Copia(n);
+    CopiaNodo(n);
 }
 
 TNodoCalendario::~TNodoCalendario() {
@@ -28,8 +28,62 @@ TNodoCalendario &TNodoCalendario::operator=(const TNodoCalendario &n) {
     }
 
     (*this).~TNodoCalendario();
-    Copia(n);
+    CopiaNodo(n);
     return *this;
+
+}
+
+TListaPos::TListaPos() {
+    this->pos = NULL;
+}
+
+TListaPos::TListaPos(const TListaPos &lp) {
+    this-> pos = lp.pos;
+}
+
+TListaPos::~TListaPos() {
+    this->pos = NULL;
+
+}
+
+TListaPos &TListaPos::operator=(const TListaPos &lp) {
+    if(this != &lp){
+        (*this).~TListaPos();
+        this->pos = lp.pos;
+    }
+
+    return *this;
+
+}
+
+bool TListaPos::operator==(const TListaPos &lp) {
+    if (this-> pos == lp.pos){
+        return true;
+    }
+
+    return false;
+
+}
+
+bool TListaPos::operator!=(const TListaPos &lp) {
+    return !(*this == lp);
+}
+
+TListaPos TListaPos::Siguiente(){
+    TListaPos lp;
+
+    if(this->pos->siguiente != NULL){
+        lp.pos = this->pos->siguiente;
+    }
+    return lp;
+
+}
+
+bool TListaPos::EsVacia() {
+    if(pos == NULL){
+        return true;
+    }
+    return false;
 
 }
 

@@ -8,7 +8,8 @@ class TNodoCalendario{
     private:
         TCalendario c;
         TNodoCalendario *siguiente;
-        void Copia (const TNodoCalendario &);
+        void CopiaNodo (const TNodoCalendario &);
+        friend class TListaPos;
 
     public:
         TNodoCalendario();
