@@ -10,6 +10,7 @@ class TNodoCalendario{
         TNodoCalendario *siguiente;
         void CopiaNodo (const TNodoCalendario &);
         friend class TListaPos;
+        friend class TListaCalendario;
 
     public:
         TNodoCalendario();
@@ -25,6 +26,7 @@ class TNodoCalendario{
 class TListaPos{
     private:
         TNodoCalendario *pos;
+        friend class TListaCalendario;
 
     public:
         TListaPos();
@@ -35,13 +37,13 @@ class TListaPos{
 
         TListaPos & operator= (const TListaPos &);
 
-        bool operator== (const TListaPos &);
+        bool operator== (const TListaPos &) const;
 
-        bool operator!= (const TListaPos &);
+        bool operator!= (const TListaPos &) const;
 
         TListaPos Siguiente();
 
-        bool EsVacia();
+        bool EsVacia() const;
 
 };
 
@@ -59,7 +61,7 @@ class TListaCalendario{
 
         TListaCalendario & operator= (const TListaCalendario &);
 
-        bool operator==(TListaCalendario &);
+        bool operator==(const TListaCalendario &) const;
 
         TListaCalendario operator+ (const TListaCalendario &);
 
@@ -73,17 +75,17 @@ class TListaCalendario{
 
         bool Borrar (int, int, int);
 
-        bool EsVacia();
+        bool EsVacia() const;
 
         TCalendario Obtener(const TListaPos &);
 
-        bool Buscar (TCalendario &);
+        bool Buscar (const TCalendario &) const;
 
-        int Longitud();
+        int Longitud() const;
 
-        TListaPos Primera();
+        TListaPos Primera() const;
 
-        TListaPos Ultima();
+        TListaPos Ultima() const;
 
         TListaCalendario SumarSubl (int I_L1, int F_L1, TListaCalendario & L2, int I_L2, int F_L2);
 
