@@ -192,10 +192,19 @@ bool TListaCalendario::EsVacia() const{
 }
 
 TCalendario TListaCalendario::Obtener(const TListaPos &){
+    TCalendario calendario;
+    if (calendario == )
+
+
+    return calendario;
+
 
 }
 
-bool TListaCalendario::Buscar (const TCalendario &) const{
+bool TListaCalendario::Buscar (const TCalendario &c) const{
+    for (int i = 0; i<=;i++){
+        if()
+    }
 
 }
 
