@@ -168,6 +168,8 @@ TListaCalendario TListaCalendario::operator- (const TListaCalendario &lc){
 
 bool TListaCalendario::Insertar(const TCalendario &){
 
+
+
 }
 
 bool TListaCalendario::Borrar(const TCalendario &){
@@ -191,20 +193,21 @@ bool TListaCalendario::EsVacia() const{
 
 }
 
-TCalendario TListaCalendario::Obtener(const TListaPos &){
-    TCalendario calendario;
-    if (calendario == )
-
-
-    return calendario;
-
-
+TCalendario TListaCalendario::Obtener(const TListaPos &lp){
+    if(lp.EsVacia()){
+        return TCalendario();
+    }
+    return lp.pos->c;
 }
 
 bool TListaCalendario::Buscar (const TCalendario &c) const{
-    for (int i = 0; i<=;i++){
-        if()
+
+    for (TListaPos i = c.Primera(); !i.EsVacia(); i = i.Siguiente()){
+        if (i.pos->c == c){
+            return true;
+        }
     }
+    return false;
 
 }
 
