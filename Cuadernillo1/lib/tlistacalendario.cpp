@@ -171,8 +171,8 @@ bool TListaCalendario::Insertar(const TCalendario &cal){
     TNodoCalendario *nuevoNodo = new TNodoCalendario();
     nuevoNodo->c = cal;
 
-    TNodoCalendario *nodoSiguiente = primero->siguiente;
-    TNodoCalendario *nodoAnterior = primero;
+    TNodoCalendario *nodoSiguiente = primero;
+    TNodoCalendario *nodoAnterior = NULL;
 
     for (TListaPos i = total.Primera(); !i.EsVacia(); i = i.Siguiente()){
         if(total.Buscar(i.pos->c)){
@@ -180,13 +180,15 @@ bool TListaCalendario::Insertar(const TCalendario &cal){
         }
     }
 
+
     if (this-> EsVacia()){
         nuevoNodo->siguiente = NULL;
         primero = nuevoNodo;
         return true;
     }
 
-    while (nodoSiguiente != NULL && nodoSiguiente->c < cal){
+
+    while (nodoSiguiente != NULL && nodoSiguiente->c < nuevoNodo->c){
         nodoAnterior = nodoSiguiente;
         nodoSiguiente = nodoSiguiente->siguiente;
     }
@@ -339,12 +341,8 @@ ostream & operator<< (ostream &s, const TListaCalendario &lc){
     }
 
     for (TListaPos i = lc.Primera(); !i.EsVacia(); i = i.Siguiente()){
-        if(i == lc.Ultima()){
-            s << lc.Obtener(i) << " ";
-        }
-        else{
-            s << lc.Obtener(i);
-        }
+        s << lc.Obtener(i);
+
     }
     s << ">";
 
