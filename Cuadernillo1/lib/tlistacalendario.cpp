@@ -146,7 +146,7 @@ bool TListaCalendario::operator==(const TListaCalendario &lc) const{
 }
 
 TListaCalendario TListaCalendario::operator+ (const TListaCalendario &lc){
-    TListaCalendario total(*this);
+    TListaCalendario total(lc);
     for (TListaPos i = lc.Primera(); !i.EsVacia(); i = i.Siguiente()){
         total.Insertar(i.pos-> c);
     }
@@ -155,7 +155,7 @@ TListaCalendario TListaCalendario::operator+ (const TListaCalendario &lc){
 }
 
 TListaCalendario TListaCalendario::operator- (const TListaCalendario &lc){
-    TListaCalendario total(*this);
+    TListaCalendario total(lc);
     for (TListaPos i = lc.Primera(); !i.EsVacia(); i = i.Siguiente()){
         if(!lc.Buscar(i.pos->c)){
             total.Insertar(i.pos-> c);
@@ -166,13 +166,46 @@ TListaCalendario TListaCalendario::operator- (const TListaCalendario &lc){
 
 }
 
-bool TListaCalendario::Insertar(const TCalendario &){
+bool TListaCalendario::Insertar(const TCalendario &cal){
+    TListaCalendario total(*this);
+    TNodoCalendario *nuevoNodo = new TNodoCalendario();
+    nuevoNodo->c = cal;
 
+    TNodoCalendario *nodoSiguiente = primero->siguiente;
+    TNodoCalendario *nodoAnterior = primero;
 
+    for (TListaPos i = total.Primera(); !i.EsVacia(); i = i.Siguiente()){
+        if(total.Buscar(i.pos->c)){
+            return false;
+        }
+    }
+
+    if (this-> EsVacia()){
+        nuevoNodo->siguiente = NULL;
+        primero = nuevoNodo;
+        return true;
+    }
+
+    while (nodoSiguiente != NULL && nodoSiguiente->c < cal){
+        nodoAnterior = nodoSiguiente;
+        nodoSiguiente = nodoSiguiente->siguiente;
+    }
+
+    nuevoNodo->siguiente = nodoSiguiente;
+    nodoAnterior->siguiente = nuevoNodo;
+    return true;
 
 }
 
-bool TListaCalendario::Borrar(const TCalendario &){
+bool TListaCalendario::Borrar(const TCalendario &cal){
+
+    for (TListaPos i = Primera(); !i.EsVacia(); i = i.Siguiente()){
+        if(i.pos->c == cal){
+            Borrar(i);
+            return true;
+        }
+    }
+    return false;
 
 }
 
@@ -180,7 +213,19 @@ bool TListaCalendario::Borrar (const TListaPos &){
 
 }
 
-bool TListaCalendario::Borrar (int, int, int){
+bool TListaCalendario::Borrar (int dia, int mes, int anyo){
+    TListaPos actual = Primera();
+    TCalendario cal(dia, mes, anyo, NULL);
+
+    while(!actual.EsVacia()){
+        if(actual.pos->c == cal){
+            Borrar(actual);
+            return true;
+        }
+        actual = actual.Siguiente();
+    }
+
+    return false;
 
 }
 
@@ -201,8 +246,8 @@ TCalendario TListaCalendario::Obtener(const TListaPos &lp){
 }
 
 bool TListaCalendario::Buscar (const TCalendario &c) const{
-
-    for (TListaPos i = c.Primera(); !i.EsVacia(); i = i.Siguiente()){
+    TListaCalendario total(*this);
+    for (TListaPos i = total.Primera(); !i.EsVacia(); i = i.Siguiente()){
         if (i.pos->c == c){
             return true;
         }
