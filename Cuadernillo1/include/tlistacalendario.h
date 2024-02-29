@@ -77,7 +77,7 @@ class TListaCalendario{
 
         bool EsVacia() const;
 
-        TCalendario Obtener(const TListaPos &);
+        TCalendario Obtener(const TListaPos &) const;
 
         bool Buscar (const TCalendario &) const;
 

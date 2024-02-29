@@ -209,7 +209,31 @@ bool TListaCalendario::Borrar(const TCalendario &cal){
 
 }
 
-bool TListaCalendario::Borrar (const TListaPos &){
+bool TListaCalendario::Borrar (const TListaPos &lp){
+    TListaPos posicionActual = Primera();
+    TListaPos posicionAnterior = Primera();
+
+    if(lp.EsVacia()){
+        return false;
+    }
+
+    if(lp.pos == primero){
+        primero = lp.pos->siguiente;
+        delete lp.pos;
+        return true;
+    }
+
+    while(!posicionActual.EsVacia()){
+        if(posicionActual == lp){
+            posicionAnterior.pos->siguiente = posicionActual.pos->siguiente;
+            delete posicionActual.pos;
+            return true;
+        }
+        posicionAnterior = posicionActual;
+        posicionActual = posicionActual.Siguiente();
+    }
+
+    return false;
 
 }
 
@@ -238,7 +262,7 @@ bool TListaCalendario::EsVacia() const{
 
 }
 
-TCalendario TListaCalendario::Obtener(const TListaPos &lp){
+TCalendario TListaCalendario::Obtener(const TListaPos &lp) const{
     if(lp.EsVacia()){
         return TCalendario();
     }
@@ -306,7 +330,25 @@ TListaCalendario TListaCalendario::ExtraerRango (int n1, int n2){
 
 }
 
-ostream & operator<< (ostream &, const TListaCalendario &){
+ostream & operator<< (ostream &s, const TListaCalendario &lc){
+    s << "<";
+
+    if (lc.EsVacia()){
+        s << ">";
+        return s;
+    }
+
+    for (TListaPos i = lc.Primera(); !i.EsVacia(); i = i.Siguiente()){
+        if(i == lc.Ultima()){
+            s << lc.Obtener(i) << " ";
+        }
+        else{
+            s << lc.Obtener(i);
+        }
+    }
+    s << ">";
+
+    return s;
 
 }
 
