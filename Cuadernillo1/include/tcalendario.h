@@ -18,7 +18,7 @@ private:
 
     int diasEnMes(int, int);
 
-    TCalendario ajustarFecha(TCalendario &c);
+    void ajustarFecha(TCalendario &c);
 
     void defaultParameters();
 

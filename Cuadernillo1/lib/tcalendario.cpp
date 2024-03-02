@@ -50,7 +50,21 @@ int TCalendario::diasEnMes(int mes, int anyo){
 }
 
 
-TCalendario TCalendario::ajustarFecha(TCalendario &c) {
+void TCalendario::ajustarFecha(TCalendario &c) {
+    if (c.dia == 0) {
+        if (--c.mes < 1) {
+            c.mes = 12;
+            c.anyo--;
+            c.dia=31;
+        }
+        else{
+            c.dia = diasEnMes(c.mes--, c.anyo);
+            c.mes = c.mes +1;
+            c.anyo = c.anyo;
+        }
+        return;
+    }
+
     while(c.dia> diasEnMes(c.mes, c.anyo)){
         c.dia= c.dia - diasEnMes(c.mes, c.anyo);
         if (++c.mes > 12) {
@@ -58,7 +72,6 @@ TCalendario TCalendario::ajustarFecha(TCalendario &c) {
             c.anyo++;
         }
     }
-    return c;
 }
 
 void TCalendario::defaultParameters(){
@@ -167,8 +180,9 @@ TCalendario &TCalendario::operator++() {
 
 TCalendario TCalendario::operator--(int cantDias) {
     TCalendario temp(*this);
-    ajustarFecha(temp);
+
     dia--;
+    ajustarFecha(*this);
 
     if(!comprobarFecha(temp.dia, temp.mes, temp.anyo)){
         temp.~TCalendario();
