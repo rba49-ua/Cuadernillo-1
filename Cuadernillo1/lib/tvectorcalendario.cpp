@@ -123,7 +123,7 @@ int TVectorCalendario::Ocupadas() {
 }
 
 bool TVectorCalendario::ExisteCal(TCalendario &c) {
-    for(int i=0; i < this->tamano; i++){
+    for(int i=1; i <= this->tamano; i++){
         if(c == this->c[i]){
             return true;
         }
