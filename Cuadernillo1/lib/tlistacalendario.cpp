@@ -146,7 +146,7 @@ bool TListaCalendario::operator==(const TListaCalendario &lc) const{
 }
 
 TListaCalendario TListaCalendario::operator+ (const TListaCalendario &lc){
-    TListaCalendario total(lc);
+    TListaCalendario total(*this);
     for (TListaPos i = lc.Primera(); !i.EsVacia(); i = i.Siguiente()){
         total.Insertar(i.pos-> c);
     }
@@ -175,14 +175,14 @@ bool TListaCalendario::Insertar(const TCalendario &cal){
     TNodoCalendario *nodoAnterior = NULL;
 
     for (TListaPos i = total.Primera(); !i.EsVacia(); i = i.Siguiente()){
-        if(total.Buscar(i.pos->c)){
+        if(i.pos->c == cal){
             return false;
         }
     }
 
 
-    if (this-> EsVacia()){
-        nuevoNodo->siguiente = NULL;
+    if (this-> EsVacia() || nuevoNodo->c < primero->c){
+        nuevoNodo->siguiente = primero;
         primero = nuevoNodo;
         return true;
     }
@@ -198,6 +198,8 @@ bool TListaCalendario::Insertar(const TCalendario &cal){
     return true;
 
 }
+
+
 
 bool TListaCalendario::Borrar(const TCalendario &cal){
 
@@ -239,21 +241,29 @@ bool TListaCalendario::Borrar (const TListaPos &lp){
 
 }
 
-bool TListaCalendario::Borrar (int dia, int mes, int anyo){
-    TListaPos actual = Primera();
+bool TListaCalendario::Borrar(int dia, int mes, int anyo) {
     TCalendario cal(dia, mes, anyo, NULL);
+    TListaPos i = Primera();
+    TListaPos siguiente;
 
-    while(!actual.EsVacia()){
-        if(actual.pos->c == cal){
-            Borrar(actual);
-            return true;
+    while (!i.EsVacia()) {
+        siguiente = i.Siguiente();
+
+        if (!(i.pos->c > cal)) {
+            Borrar(i);
+            i = siguiente;
+            continue;
         }
-        actual = actual.Siguiente();
+
+        i = siguiente;
     }
 
-    return false;
-
+    return !EsVacia();
 }
+
+
+
+
 
 bool TListaCalendario::EsVacia() const{
 
@@ -341,7 +351,10 @@ ostream & operator<< (ostream &s, const TListaCalendario &lc){
     }
 
     for (TListaPos i = lc.Primera(); !i.EsVacia(); i = i.Siguiente()){
-        s << lc.Obtener(i);
+        s << lc.Obtener(i) ;
+        if (!i.Siguiente().EsVacia()){
+            s << " ";
+        }
 
     }
     s << ">";
