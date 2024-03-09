@@ -334,14 +334,21 @@ TListaPos TListaCalendario::Ultima() const{
 }
 
 TListaCalendario TListaCalendario::SumarSubl (int I_L1, int F_L1, TListaCalendario & L2, int I_L2, int F_L2){
+    TListaCalendario lista1_aux(*this);
+    TListaCalendario lista2_aux(L2);
 
+    TListaCalendario lista1 = lista1_aux.ExtraerRango(I_L1, F_L1);
+    TListaCalendario lista2 = lista2_aux.ExtraerRango(I_L2, F_L2);
+
+    TListaCalendario resultado = lista1 + lista2;
+    return resultado;
 
 }
 
 TListaCalendario TListaCalendario::ExtraerRango(int n1, int n2) {
     TListaCalendario resultado;
     TListaPos pos = Primera();
-    TListaPos temp = pos;
+    TListaPos temp;
     int contador = 1;
 
     while (!pos.EsVacia() && contador <= n2) {
