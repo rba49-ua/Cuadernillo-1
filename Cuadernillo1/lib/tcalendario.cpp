@@ -233,7 +233,7 @@ bool TCalendario::operator==(const TCalendario &c) {
             return true;
         }
         else{
-            if(strcmp(mensaje, c.mensaje) == 0){
+            if(mensaje!=NULL && c.mensaje!=NULL && strcmp(mensaje, c.mensaje) == 0){
                 return true;
             }
         }
