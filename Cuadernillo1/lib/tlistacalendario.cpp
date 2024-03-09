@@ -155,15 +155,14 @@ TListaCalendario TListaCalendario::operator+ (const TListaCalendario &lc){
 }
 
 TListaCalendario TListaCalendario::operator- (const TListaCalendario &lc){
-    TListaCalendario total(lc);
+    TListaCalendario total(*this);
     for (TListaPos i = lc.Primera(); !i.EsVacia(); i = i.Siguiente()){
-        if(!lc.Buscar(i.pos->c)){
-            total.Insertar(i.pos-> c);
+        if(total.Buscar(i.pos->c)){
+            total.Borrar(i.pos->c);
         }
     }
 
     return total;
-
 }
 
 bool TListaCalendario::Insertar(const TCalendario &cal){
@@ -336,11 +335,32 @@ TListaPos TListaCalendario::Ultima() const{
 
 TListaCalendario TListaCalendario::SumarSubl (int I_L1, int F_L1, TListaCalendario & L2, int I_L2, int F_L2){
 
-}
-
-TListaCalendario TListaCalendario::ExtraerRango (int n1, int n2){
 
 }
+
+TListaCalendario TListaCalendario::ExtraerRango(int n1, int n2) {
+    TListaCalendario resultado;
+    TListaPos pos = Primera();
+    TListaPos temp = pos;
+    int contador = 1;
+
+    while (!pos.EsVacia() && contador <= n2) {
+        if (contador < n1){
+            pos = pos.Siguiente();
+        }
+        else{
+            resultado.Insertar(pos.pos->c);
+            temp = pos;
+            pos = pos.Siguiente();
+            Borrar(temp.pos->c);
+        }
+
+        contador++;
+    }
+
+    return resultado;
+}
+
 
 ostream & operator<< (ostream &s, const TListaCalendario &lc){
     s << "<";
