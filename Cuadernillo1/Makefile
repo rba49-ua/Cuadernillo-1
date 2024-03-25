@@ -8,7 +8,7 @@ INCLUDEDIR=include
 _OBJ= tcalendario.o tvectorcalendario.o tlistacalendario.o
 OBJ = $(patsubst %,$(LIBDIR)/%,$(_OBJ))
 
-tad:    src/tad.cpp $(OBJ)
+tad:    src/main.cpp $(OBJ)
 	$(CC) $(OPTIONS) $(DEBUG) -I$(INCLUDEDIR) src/tad.cpp $(OBJ) -o tad
 
 $(LIBDIR)/%.o : $(LIBDIR)/%.cpp $(INCLUDEDIR)/%.h
