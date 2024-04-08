@@ -64,7 +64,8 @@ TABBCalendario &TABBCalendario::operator= (const TABBCalendario & abb){
 
 bool TABBCalendario::operator== (const TABBCalendario &abb) const {
     TVectorCalendario a = abb.Inorden();
-    return Inorden() == a;
+    TVectorCalendario b = Inorden();
+    return b == a;
 }
 
 bool TABBCalendario::EsVacio() const {
