@@ -46,6 +46,8 @@ int TCalendario::diasEnMes(int mes, int anyo){
                 return 29;
             }
             return 28;
+        default:
+            return -1;
     }
 }
 
@@ -322,8 +324,3 @@ ostream &operator<<(ostream &s, const TCalendario &c){
 
     return s;
 }
-
-
-
-
-

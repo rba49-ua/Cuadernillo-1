@@ -248,7 +248,7 @@ bool TListaCalendario::Borrar(int dia, int mes, int anyo) {
     while (!i.EsVacia()) {
         siguiente = i.Siguiente();
 
-        if (!(i.pos->c > cal)) {
+        if (i.pos->c < cal) {
             Borrar(i);
             i = siguiente;
             continue;
@@ -389,6 +389,3 @@ ostream & operator<< (ostream &s, const TListaCalendario &lc){
     return s;
 
 }
-
-
-

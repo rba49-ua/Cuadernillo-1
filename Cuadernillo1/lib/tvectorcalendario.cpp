@@ -123,7 +123,7 @@ int TVectorCalendario::Ocupadas() {
 }
 
 bool TVectorCalendario::ExisteCal(TCalendario &c) {
-    for(int i=1; i <= this->tamano; i++){
+    for(int i=0; i < this->tamano; i++){
         if(c == this->c[i]){
             return true;
         }
@@ -150,7 +150,7 @@ void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
 
             cout << c[i];
 
-            if ( i < tamano){
+            if ( i < tamano - 1){
                 cout << ", ";
             }
         }
@@ -159,34 +159,26 @@ void TVectorCalendario::MostrarMensajes(int dia, int mes, int anyo) {
 }
 
 bool TVectorCalendario::Redimensionar(int tam) {
+    if (tam <= 0 || tam == tamano) {
+        return false;
+    }
+
     TCalendario *aux = new TCalendario[tam];
-    if (tam <= 0){
-        return false;
-    }
 
-    if (tam == tamano){
-        return false;
-    }
-
+    int limite = tam;
     if (tam > tamano) {
-        for (int i = 0; i < tamano; i++){
-            aux[i] = c[i];
-        }
-
-        for (int i = tamano + 1; i <= tam; i++){
-            aux[i]= TCalendario();
-        }
-
-        delete[] c;
+        limite = tamano;
     }
 
-    if (tam < tamano){
-        for (int i = 0; i < tam; i++){
-            aux[i]=c[i];
-        }
-        delete[] c;
+    for (int i = 0; i < limite; i++) {
+        aux[i] = c[i];
     }
 
+    for (int i = limite; i < tam; i++) {
+        aux[i] = TCalendario(); // Inicializar los elementos restantes si tam > tamano
+    }
+
+    delete[] c;
     c = aux;
     tamano = tam;
 
@@ -199,7 +191,7 @@ ostream & operator<<(ostream &s, const TVectorCalendario &vc){
     for(int i = 0; i < vc.tamano;  i++){
         s << "(" << i + 1 << ") " << vc[i+1];
 
-        if ( i < vc.tamano - 1 ){
+        if (i < vc.tamano - 1){
             s << ", ";
         }
     }
