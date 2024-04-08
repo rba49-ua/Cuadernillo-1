@@ -24,9 +24,9 @@ class TVectorCalendario{
 
         TVectorCalendario & operator=(const TVectorCalendario &);
 
-        bool operator==(TVectorCalendario &);
+        bool operator==(const TVectorCalendario &) const;
 
-        bool operator!=(TVectorCalendario &);
+        bool operator!=(const TVectorCalendario &) const;
 
         TCalendario & operator[] (int);
 
