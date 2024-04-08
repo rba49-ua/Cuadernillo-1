@@ -1,4 +1,4 @@
-#include "../include/tcalendario.h"
+#include "../../Cuadernillo2/include/tcalendario.h"
 #include <cstring>
 
 bool TCalendario::comprobarFecha(int dia, int mes, int anyo) {

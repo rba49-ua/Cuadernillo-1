@@ -1,7 +1,7 @@
 
 #ifndef PED_TVECTORCALENDARIO_H
 #define PED_TVECTORCALENDARIO_H
-#include "tcalendario.h"
+#include "../../Cuadernillo2/include/tcalendario.h"
 
 class TVectorCalendario{
     friend ostream & operator<<(ostream &, const TVectorCalendario &);  //falta

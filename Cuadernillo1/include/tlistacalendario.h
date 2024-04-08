@@ -1,7 +1,7 @@
 #ifndef PED_TLISTACALENDARIO_H
 #define PED_TLISTACALENDARIO_H
 
-#include "tcalendario.h"
+#include "../../Cuadernillo2/include/tcalendario.h"
 #include "tvectorcalendario.h"
 
 class TNodoCalendario{
