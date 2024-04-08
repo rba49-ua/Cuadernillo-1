@@ -29,7 +29,7 @@ void TABBCalendario::Copia(const TABBCalendario &origen) {
         aux->item = origen.raiz->item;
         raiz = aux;
         raiz-> de.Copia(origen.raiz->de);
-        raiz->iz.Copia(origen.raiz->de);
+        raiz->iz.Copia(origen.raiz->iz);
     }
     else raiz = NULL;
 }
@@ -63,9 +63,7 @@ TABBCalendario &TABBCalendario::operator= (const TABBCalendario & abb){
 }
 
 bool TABBCalendario::operator== (const TABBCalendario &abb) const {
-    TVectorCalendario a = Inorden();
-    TVectorCalendario b = abb.Inorden();
-    return a == b;
+    return Inorden() == abb.Inorden();
 }
 
 bool TABBCalendario::EsVacio() const {
