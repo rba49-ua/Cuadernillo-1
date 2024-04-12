@@ -117,6 +117,49 @@ bool TABBCalendario::Insertar(const TCalendario &c) {
     }
 }
 
+TCalendario TABBCalendario::Maximo() const {
+    if (EsVacio()){
+        return TCalendario();
+    }
+    if (raiz->de.EsVacio()){
+        return raiz->item;
+    }
+    return raiz->de.Maximo();
+}
+
+bool TABBCalendario::Borrar(const TCalendario &c) {
+    if(EsVacio()){
+        return false;
+    }
+
+    if (raiz->item < c){
+        return raiz->de.Borrar(c);
+    }
+
+    if (raiz->item > c){
+        return raiz->iz.Borrar(c);
+    }
+
+    if(raiz->item == c && raiz->de.EsVacio()){
+        this->raiz = this->raiz->iz.raiz;
+        return true;
+    }
+
+    if(raiz->item == c && raiz->iz.EsVacio()){
+        this->raiz = this->raiz->de.raiz;
+        return true;
+
+    }
+
+    if(raiz->item == c && !raiz->de.EsVacio() && !raiz->iz.EsVacio()){
+        TCalendario maxItem = raiz->iz.Maximo();
+        raiz->item = maxItem;
+        raiz->iz.Borrar(maxItem);
+        return true;
+    }
+    return false;
+}
+
 bool TABBCalendario::Buscar(const TCalendario &c) const {
     if (EsVacio()){
         return false;

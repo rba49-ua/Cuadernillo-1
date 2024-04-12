@@ -16,6 +16,7 @@ class TABBCalendario{
     friend ostream & operator<<(ostream &, TABBCalendario &);
     private:
         void Copia(const TABBCalendario &);
+        TCalendario Maximo() const;
         TNodoABB *raiz;
         void InordenAux(TVectorCalendario &, int &) const;
         void PreordenAux(TVectorCalendario &, int &) const;
