@@ -98,6 +98,41 @@ int TABBCalendario::NodosHoja() const {
     return raiz->iz.NodosHoja() + raiz->de.NodosHoja();
 }
 
+bool TABBCalendario::Insertar(const TCalendario &c) {
+    if (EsVacio()){
+        raiz = new TNodoABB();
+        raiz->item = c;
+        return true;
+    }
+
+    if (this->Buscar(c)){
+        return false;
+    }
+
+    if (raiz->item < c){
+        return raiz->de.Insertar(c);
+    }
+    else{
+        return raiz->iz.Insertar(c);
+    }
+}
+
+bool TABBCalendario::Buscar(const TCalendario &c) const {
+    if (EsVacio()){
+        return false;
+    }
+
+    if (raiz->item < c){
+        return raiz->de.Buscar(c);
+    }
+
+    if (raiz->item > c){
+        return raiz->iz.Buscar(c);
+    }
+
+    return true;
+}
+
 void TABBCalendario::InordenAux(TVectorCalendario &v, int &pos) const {
     if (!EsVacio()){
         raiz->iz.InordenAux(v,pos);
