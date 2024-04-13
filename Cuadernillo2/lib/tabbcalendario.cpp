@@ -1,4 +1,5 @@
 #include "../include/tabbcalendario.h"
+#include <queue>
 
 void TNodoABB::Copia(const TNodoABB &other){
     item = other.item;
@@ -222,7 +223,29 @@ TVectorCalendario TABBCalendario::Postorden() const {
 }
 
 TVectorCalendario TABBCalendario::Niveles() const {
+    TVectorCalendario v(Nodos());
+    int pos = 1;
+    if (EsVacio()) {
+        return v;
+    }
 
+    queue<TNodoABB *> queue1;
+    queue1.push(raiz);
+
+    while(!queue1.empty()){
+        TNodoABB* node = queue1.front();
+        queue1.pop();
+        v[pos++] = node->item;
+
+        if (!node->iz.EsVacio()){
+            queue1.push(node->iz.raiz);
+        }
+
+        if (!node->de.EsVacio()){
+            queue1.push(node->de.raiz);
+        }
+    }
+    return v;
 }
 
 ostream & operator<<(ostream & os, TABBCalendario &elements){
