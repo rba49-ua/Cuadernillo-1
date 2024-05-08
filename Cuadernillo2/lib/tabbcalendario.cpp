@@ -254,11 +254,22 @@ ostream & operator<<(ostream & os, TABBCalendario &elements){
     return os;
 }
 
+TABBCalendario TABBCalendario::operator+(const TABBCalendario &abb) {
+    TABBCalendario result(*this);
+    TVectorCalendario v = abb.Inorden();
+    for (int i = 1; i <= v.Tamano(); i++){
+        result.Insertar(v[i]);
+    }
+    return result;
+}
 
-
-
-
-
-
-
-
+TABBCalendario TABBCalendario::operator-(const TABBCalendario &abb) {
+    TABBCalendario result;
+    TVectorCalendario v = this->Inorden();
+    for (int i = 1; i <= v.Tamano(); i++){
+        if (!abb.Buscar(v[i])){
+            result.Insertar(v[i]);
+        }
+    }
+    return result;
+}
